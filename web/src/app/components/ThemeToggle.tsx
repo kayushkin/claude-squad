@@ -12,6 +12,8 @@ export default function ThemeToggle() {
     // Get the theme from localStorage or default to light
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
+      // The page is prerendered, so localStorage can only be read after mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(savedTheme);
       document.documentElement.setAttribute("data-theme", savedTheme);
     } else {
